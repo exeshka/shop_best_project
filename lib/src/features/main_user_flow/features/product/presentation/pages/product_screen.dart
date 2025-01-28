@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shop_best_project/src/core/theme/theme.dart';
+import 'package:shop_best_project/src/core/widgets/custom_sliver_appbar.dart';
 import 'package:shop_best_project/src/features/main_user_flow/features/product/data/models/product_model.dart';
 import 'package:shop_best_project/src/features/main_user_flow/features/product/presentation/bloc/product/product_bloc.dart';
 import 'package:shop_best_project/src/features/main_user_flow/features/product/presentation/widgets/product_appbar.dart';
@@ -23,31 +24,14 @@ class _ProductScreenState extends State<ProductScreen>
     with SingleTickerProviderStateMixin {
   final ScrollController _scrollController = ScrollController();
 
-  late Animation<double> _animationAppBarHeight;
-  late AnimationController _animationControllerAppBarHeight;
-
   double expandedDefaultHeight = kToolbarHeight + 145;
 
-  double expandedMaxHeight = kToolbarHeight + 310;
   double collapsedHeight = kToolbarHeight + 60;
 
   @override
   void initState() {
     BlocProvider.of<ProductBloc>(context)
         .add(GetRecommendedProducts(pageNumber: 0));
-
-    _animationControllerAppBarHeight = AnimationController(
-      vsync: this,
-      duration: const Duration(milliseconds: 300), // Более плавная анимация
-    );
-
-    _animationAppBarHeight = Tween<double>(
-      begin: expandedDefaultHeight,
-      end: expandedMaxHeight,
-    ).animate(CurvedAnimation(
-      parent: _animationControllerAppBarHeight,
-      curve: Curves.linear,
-    ));
 
     WidgetsBinding.instance.addPostFrameCallback(
       (timeStamp) {
@@ -72,7 +56,7 @@ class _ProductScreenState extends State<ProductScreen>
     double offset = _scrollController.offset;
 
     // Задаем пороговое значение для диапазона
-    double snapThreshold = (_animationAppBarHeight.value - collapsedHeight) / 2;
+    double snapThreshold = (expandedDefaultHeight - collapsedHeight) / 2;
 
     // Если скролл выше минимального значения, остаемся развернутыми
     if (offset < snapThreshold) {
@@ -105,11 +89,12 @@ class _ProductScreenState extends State<ProductScreen>
         slivers: [
           SliverPersistentHeader(
               pinned: true,
-              delegate: ProductAppbar(
-                  expandedDefaultHeight: expandedDefaultHeight,
-                  expandedMaxHeight: expandedMaxHeight,
-                  maxExtent: _animationAppBarHeight.value,
+              delegate: CustomSliverAppBar.transitionAnimation(
+                  maxExtent: expandedDefaultHeight,
                   minExtent: collapsedHeight,
+                  builder: (context, shrinkOffset) {
+                    return ProductAppBarWidget(shrinkOffset: shrinkOffset);
+                  },
                   stretchConfiguration: OverScrollHeaderStretchConfiguration(
                     onStretchTrigger: () async {},
                   ))),

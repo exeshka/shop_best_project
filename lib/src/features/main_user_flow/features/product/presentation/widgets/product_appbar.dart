@@ -2,7 +2,6 @@ import 'dart:ui';
 
 import 'package:awesome_extensions/awesome_extensions.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
@@ -10,24 +9,20 @@ import 'package:shop_best_project/gen/assets.gen.dart';
 import 'package:shop_best_project/generated/l10n.dart';
 import 'package:shop_best_project/src/core/bloc/user/user_bloc.dart';
 import 'package:shop_best_project/src/core/extension/extension.dart';
+import 'package:shop_best_project/src/core/theme/other_constants.dart';
 import 'package:shop_best_project/src/core/theme/theme.dart';
 import 'package:shop_best_project/src/core/widgets/buttons_widget.dart';
 import 'package:shop_best_project/src/features/main_user_flow/features/user/presentation/pages/user_screen.dart';
 
-const double sigmaX = 50;
-const double sigmaY = 50;
+class ProductAppBarWidget extends StatelessWidget {
+  final double shrinkOffset;
+  const ProductAppBarWidget({super.key, required this.shrinkOffset});
 
-const Duration _duration = Duration(milliseconds: 150);
-
-class ProductAppbar extends SliverPersistentHeaderDelegate {
   @override
-  Widget build(
-      BuildContext context, double shrinkOffset, bool overlapsContent) {
+  Widget build(BuildContext context) {
     return BlocBuilder<UserBloc, UserState>(
       builder: (context, userState) {
-        return AnimatedContainer(
-          duration: _duration,
-          color: context.appTheme.onBgColor,
+        return Material(
           child: Stack(
             fit: StackFit.expand,
             children: [
@@ -36,7 +31,7 @@ class ProductAppbar extends SliverPersistentHeaderDelegate {
                   child: BackdropFilter(
                     filter: ImageFilter.blur(sigmaX: sigmaX, sigmaY: sigmaY),
                     child: AnimatedContainer(
-                      duration: _duration,
+                      duration: duration,
                       color: shrinkOffset > 80
                           ? context.onBgColor
                           : context.bgColor,
@@ -51,7 +46,7 @@ class ProductAppbar extends SliverPersistentHeaderDelegate {
                 left: 16,
                 bottom: 0,
                 child: AnimatedOpacity(
-                  duration: _duration,
+                  duration: duration,
                   opacity: shrinkOffset > 40 ? 0.0 : 1.0,
                   child: Builder(
                     builder: (context) {
@@ -86,7 +81,7 @@ class ProductAppbar extends SliverPersistentHeaderDelegate {
               ),
 
               AnimatedPositioned(
-                  duration: _duration,
+                  duration: duration,
                   bottom: 16,
                   left: shrinkOffset > 40 ? 50 : 16,
                   right: shrinkOffset > 40 ? 50 : 16,
@@ -114,7 +109,7 @@ class ProductAppbar extends SliverPersistentHeaderDelegate {
                   )),
 
               AnimatedPositioned(
-                duration: _duration,
+                duration: duration,
                 left: shrinkOffset > 40 ? 16 : -30,
                 bottom: 16,
                 child: ButtonsWidget.iconScale(
@@ -129,7 +124,7 @@ class ProductAppbar extends SliverPersistentHeaderDelegate {
                 ),
               ),
               AnimatedPositioned(
-                duration: _duration,
+                duration: duration,
                 right: 16,
                 top: kToolbarHeight + 3,
                 child: SizedBox(
@@ -146,28 +141,5 @@ class ProductAppbar extends SliverPersistentHeaderDelegate {
         );
       },
     );
-  }
-
-  @override
-  final double maxExtent;
-  @override
-  final double minExtent;
-
-  @override
-  final OverScrollHeaderStretchConfiguration? stretchConfiguration;
-
-  final double expandedMaxHeight;
-  final double expandedDefaultHeight;
-
-  ProductAppbar(
-      {required this.maxExtent,
-      required this.minExtent,
-      required this.stretchConfiguration,
-      required this.expandedMaxHeight,
-      required this.expandedDefaultHeight});
-
-  @override
-  bool shouldRebuild(covariant SliverPersistentHeaderDelegate oldDelegate) {
-    return true;
   }
 }
