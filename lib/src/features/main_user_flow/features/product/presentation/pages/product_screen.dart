@@ -26,7 +26,7 @@ class _ProductScreenState extends State<ProductScreen>
 
   double expandedDefaultHeight = kToolbarHeight + 145;
 
-  double collapsedHeight = kToolbarHeight + 60;
+  double collapsedHeight = kToolbarHeight + 44;
 
   @override
   void initState() {
@@ -92,8 +92,12 @@ class _ProductScreenState extends State<ProductScreen>
               delegate: CustomSliverAppBar.transitionAnimation(
                   maxExtent: expandedDefaultHeight,
                   minExtent: collapsedHeight,
-                  builder: (context, shrinkOffset) {
-                    return ProductAppBarWidget(shrinkOffset: shrinkOffset);
+                  builder: (context, shrinkOffset, maxExtent, minExtent) {
+                    return ProductAppBarWidget(
+                      shrinkOffset: shrinkOffset,
+                      maxExtent: expandedDefaultHeight,
+                      minExtent: collapsedHeight,
+                    );
                   },
                   stretchConfiguration: OverScrollHeaderStretchConfiguration(
                     onStretchTrigger: () async {},

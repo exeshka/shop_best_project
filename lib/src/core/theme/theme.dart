@@ -7,23 +7,23 @@ part 'theme.tailor.dart';
 
 @TailorMixin()
 class AppTheme extends ThemeExtension<AppTheme> with _$AppThemeTailorMixin {
-  AppTheme({
-    required this.bgColor,
-    required this.appBarIconsColor,
-    required this.onBgColor,
-    required this.primaryColor,
-    required this.mainTextColor,
-    required this.inputBgColor,
-    required this.inActiveIconsColor,
-    required this.secondTextColor,
-    required this.semiBold22,
-    required this.semiBold16,
-    required this.meduim16,
-    required this.meduim14,
-    required this.regular16,
-    required this.regular12,
-    required this.regular10,
-  });
+  AppTheme(
+      {required this.bgColor,
+      required this.appBarIconsColor,
+      required this.onBgColor,
+      required this.primaryColor,
+      required this.mainTextColor,
+      required this.inputBgColor,
+      required this.inActiveIconsColor,
+      required this.secondTextColor,
+      required this.semiBold22,
+      required this.semiBold16,
+      required this.meduim16,
+      required this.meduim14,
+      required this.regular16,
+      required this.regular12,
+      required this.regular10,
+      required this.listTileColor});
 
   //
   final Color bgColor;
@@ -35,6 +35,8 @@ class AppTheme extends ThemeExtension<AppTheme> with _$AppThemeTailorMixin {
   final Color inputBgColor;
   final Color secondTextColor;
 
+  final Color listTileColor;
+
   //
   final TextStyle semiBold22;
   final TextStyle semiBold16;
@@ -45,33 +47,37 @@ class AppTheme extends ThemeExtension<AppTheme> with _$AppThemeTailorMixin {
   final TextStyle regular10;
 
   //dark theme
-  static AppTheme get darkTheme => AppTheme(
-        inActiveIconsColor: DarkColorConstants.inActiveIconsColor,
-        bgColor: DarkColorConstants.bgColor,
-        appBarIconsColor: DarkColorConstants.appBarIconsColor,
-        onBgColor: DarkColorConstants.onBgColor,
-        primaryColor: DarkColorConstants.primaryColor,
-        mainTextColor: DarkColorConstants.mainTextColor,
-        inputBgColor: DarkColorConstants.inputBgColor,
-        secondTextColor: DarkColorConstants.secondTextColor,
-        semiBold22: StyleConstants.semiBold22
-            .copyWith(color: DarkColorConstants.mainTextColor),
-        semiBold16: StyleConstants.semiBold16
-            .copyWith(color: DarkColorConstants.mainTextColor),
-        meduim16: StyleConstants.medium16
-            .copyWith(color: DarkColorConstants.mainTextColor),
-        meduim14: StyleConstants.medium14
-            .copyWith(color: DarkColorConstants.secondTextColor),
-        regular16: StyleConstants.regular16
-            .copyWith(color: DarkColorConstants.mainTextColor),
-        regular12: StyleConstants.regular12
-            .copyWith(color: DarkColorConstants.mainTextColor),
-        regular10: StyleConstants.regular10
-            .copyWith(color: DarkColorConstants.mainTextColor),
-      );
+  factory AppTheme.darkTheme({Color? primaryColor}) {
+    return AppTheme(
+      listTileColor: DarkColorConstants.listTileColor,
+      inActiveIconsColor: DarkColorConstants.inActiveIconsColor,
+      bgColor: DarkColorConstants.bgColor,
+      appBarIconsColor: DarkColorConstants.appBarIconsColor,
+      onBgColor: DarkColorConstants.onBgColor,
+      primaryColor: primaryColor ?? DarkColorConstants.primaryColor,
+      mainTextColor: DarkColorConstants.mainTextColor,
+      inputBgColor: DarkColorConstants.inputBgColor,
+      secondTextColor: DarkColorConstants.secondTextColor,
+      semiBold22: StyleConstants.semiBold22
+          .copyWith(color: DarkColorConstants.mainTextColor),
+      semiBold16: StyleConstants.semiBold16
+          .copyWith(color: DarkColorConstants.mainTextColor),
+      meduim16: StyleConstants.medium16
+          .copyWith(color: DarkColorConstants.mainTextColor),
+      meduim14: StyleConstants.medium14
+          .copyWith(color: DarkColorConstants.secondTextColor),
+      regular16: StyleConstants.regular16
+          .copyWith(color: DarkColorConstants.mainTextColor),
+      regular12: StyleConstants.regular12
+          .copyWith(color: DarkColorConstants.mainTextColor),
+      regular10: StyleConstants.regular10
+          .copyWith(color: DarkColorConstants.mainTextColor),
+    );
+  }
 
   // light theme
   static AppTheme get lightTheme => AppTheme(
+        listTileColor: LightColorConstants.listTileColor,
         inActiveIconsColor: LightColorConstants.inActiveIconsColor,
         bgColor: LightColorConstants.bgColor,
         appBarIconsColor: LightColorConstants.appBarIconsColor,
@@ -96,16 +102,16 @@ class AppTheme extends ThemeExtension<AppTheme> with _$AppThemeTailorMixin {
             .copyWith(color: LightColorConstants.mainTextColor),
       );
 
-  static ThemeData get darkThemeData => ThemeData(
+  static ThemeData get defaultDark => ThemeData(
         colorScheme: ColorScheme.dark(
-          primary: AppTheme.darkTheme.primaryColor,
-          surface: AppTheme.darkTheme.bgColor,
+          primary: AppTheme.darkTheme().primaryColor,
+          surface: AppTheme.darkTheme().bgColor,
         ),
-        extensions: [AppTheme.darkTheme],
+        extensions: [AppTheme.darkTheme()],
         useMaterial3: true,
       );
 
-  static ThemeData get lighthemeData => ThemeData(
+  static ThemeData get defaultLight => ThemeData(
         colorScheme: ColorScheme.light(
           primary: AppTheme.lightTheme.primaryColor,
           surface: AppTheme.lightTheme.bgColor,

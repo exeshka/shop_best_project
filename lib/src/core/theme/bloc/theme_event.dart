@@ -8,3 +8,16 @@ sealed class ThemeEvent extends Equatable {
 }
 
 final class GetThemeMode extends ThemeEvent {}
+
+final class ChangeTheme extends ThemeEvent {
+  final ThemeMode themeMode;
+
+  const ChangeTheme({
+    required this.themeMode,
+  });
+
+  @override
+  List<Object> get props => [
+        themeMode,
+      ];
+}

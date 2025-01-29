@@ -11,13 +11,13 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<ThemeBloc, ThemeMode>(
+    return BlocBuilder<ThemeBloc, ThemeState>(
       builder: (context, themeState) {
         return MaterialApp.router(
           debugShowCheckedModeBanner: false,
-          theme: AppTheme.lighthemeData,
-          darkTheme: AppTheme.darkThemeData,
-          themeMode: ThemeMode.dark,
+          theme: AppTheme.defaultLight,
+          darkTheme: AppTheme.defaultDark,
+          themeMode: themeState.themeMode,
           supportedLocales: S.delegate.supportedLocales,
           locale: S.delegate.supportedLocales.first,
           routerConfig: router,

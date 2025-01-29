@@ -12,7 +12,7 @@ void main() {
   runApp(MultiBlocProvider(
     providers: [
       BlocProvider(
-        create: (context) => sl.get<ThemeBloc>(),
+        create: (context) => sl.get<ThemeBloc>()..add(GetThemeMode()),
       ),
       BlocProvider(
         create: (context) => sl.get<UserBloc>()..add(GetMyUser()),

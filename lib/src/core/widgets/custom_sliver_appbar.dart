@@ -20,7 +20,9 @@ class CustomSliverAppBar extends SliverPersistentHeaderDelegate {
     required double maxExtent,
     required double minExtent,
     required OverScrollHeaderStretchConfiguration stretchConfiguration,
-    required Widget Function(BuildContext context, double shrinkOffset) builder,
+    required Widget Function(BuildContext context, double shrinkOffset,
+            double maxExtent, double minExtent)
+        builder,
     Object? tag,
   }) {
     return CustomSliverAppBar(
@@ -99,7 +101,8 @@ class CustomSliverAppBar extends SliverPersistentHeaderDelegate {
       transitionOnUserGestures: true, // Enable transition on user gestures.
       tag: tag ?? _tag, // Use the provided tag or fallback to the default.
       child: Builder(
-        builder: (context) => builder(context, shrinkOffset),
+        builder: (context) =>
+            builder(context, shrinkOffset, maxExtent, minExtent),
       ),
     );
   }
@@ -113,7 +116,8 @@ class CustomSliverAppBar extends SliverPersistentHeaderDelegate {
   final OverScrollHeaderStretchConfiguration
       stretchConfiguration; // Configuration for overscroll stretching.
 
-  final Widget Function(BuildContext context, double shrinkOffset)
+  final Widget Function(BuildContext context, double shrinkOffset,
+          double maxExtent, double minExtent)
       builder; // The builder function for the app bar content.
 
   final Widget Function(

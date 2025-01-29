@@ -1,5 +1,139 @@
 {
   "@@locale": "en",
   "profile": "Профиль",
-  "search": "Поиск"
+  "@profile": {
+    "description": "Label for the user's profile section"
+  },
+  "search": "Поиск",
+  "@search": {
+    "description": "Label for the search functionality"
+  },
+  "unauthorized": "Не авторизован",
+  "@unauthorized": {
+    "description": "Message displayed when the user is not authorized"
+  },
+  "authorization_required": "Требуется авторизация",
+  "@authorization_required": {
+    "description": "Message displayed when authorization is needed"
+  },
+  "login": "Войти",
+  "@login": {
+    "description": "Button label for login"
+  },
+  "continue_word": "Продолжить",
+  "@continue_word": {
+    "description": "Button label for continuing an action"
+  },
+  "ok": "Окей",
+  "@ok": {
+    "description": "Button label for confirmation"
+  },
+  "next": "Далее",
+  "@next": {
+    "description": "Button label for moving to the next step"
+  },
+  "good": "Хорошо",
+  "@good": {
+    "description": "General positive confirmation message"
+  },
+  "successfully_registered": "Успешно зарегистрирован",
+  "@successfully_registered": {
+    "description": "Message displayed after successful registration"
+  },
+  "authorization_error": "Произошла ошибка авторизации, код ошибки {code}",
+  "@authorization_error": {
+    "description": "Message displayed when an authorization error occurs. Includes error code."
+  },
+  "settings": "Настройки",
+  "@settings": {
+    "description": "Label for the settings section"
+  },
+  "notifications": "Уведомления",
+  "@notifications": {
+    "description": "Label for the notifications section"
+  },
+  "switch_account": "Сменить аккаунт",
+  "@switch_account": {
+    "description": "Button label for switching accounts"
+  },
+  "add_account": "Добавить аккаунт",
+  "@add_account": {
+    "description": "Button label for adding a new account"
+  },
+  "dark_theme": "Темная тема",
+  "@dark_theme": {
+    "description": "Label for dark theme option"
+  },
+  "system_theme": "Системная тема",
+  "@system_theme": {
+    "description": "Label for system theme option"
+  },
+  "light_theme": "Светлая тема",
+  "@light_theme": {
+    "description": "Label for light theme option"
+  },
+  "accent_color": "Цветовой акцент",
+  "@accent_color": {
+    "description": "Label for accent color option"
+  },
+  "select": "Выбрать",
+  "@select": {
+    "description": "Button label for selection action"
+  },
+  "language": "Язык",
+  "@language": {
+    "description": "Label for language selection option"
+  },
+  "email": "Е-мейл",
+  "@email": {
+    "description": "Label for email input field"
+  },
+  "first_name": "Имя",
+  "@first_name": {
+    "description": "Label for first name input field"
+  },
+  "last_name": "Фамилия",
+  "@last_name": {
+    "description": "Label for last name input field"
+  },
+  "profile_photo": "Фото профиля",
+  "@profile_photo": {
+    "description": "Label for profile photo option"
+  },
+  "login_with_apple": "Войти с помощью Apple",
+  "@login_with_apple": {
+    "description": "Button label for logging in with Apple"
+  },
+  "login_with_google": "Войти с помощью Google",
+  "@login_with_google": {
+    "description": "Button label for logging in with Google"
+  },
+  "enter_valid_email": "Введите корректный email",
+  "@enter_valid_email": {
+    "description": "Error message for invalid email input"
+  },
+  "confirmation_code_sent": "На почту {email} был отправлен код подтверждения",
+  "@confirmation_code_sent": {
+    "description": "Message displayed when a confirmation code is sent to the email",
+    "placeholders": {
+      "email": {
+        "type": "String",
+        "example": "example@example.com"
+      }
+    }
+  },
+  "retry": "Повторить попытку",
+  "@retry": {
+    "description": "Button label for retrying an action"
+  },
+  "too_many_requests": "Слишком много запросов, пожалуйста попробуйте через {time}",
+  "@too_many_requests": {
+    "description": "Message displayed when there are too many requests",
+    "placeholders": {
+      "time": {
+        "type": "String",
+        "example": "5 minutes"
+      }
+    }
+  }
 }

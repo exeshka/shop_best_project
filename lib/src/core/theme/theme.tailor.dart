@@ -17,6 +17,7 @@ mixin _$AppThemeTailorMixin on ThemeExtension<AppTheme> {
   Color get mainTextColor;
   Color get inputBgColor;
   Color get secondTextColor;
+  Color get listTileColor;
   TextStyle get semiBold22;
   TextStyle get semiBold16;
   TextStyle get meduim16;
@@ -35,6 +36,7 @@ mixin _$AppThemeTailorMixin on ThemeExtension<AppTheme> {
     Color? mainTextColor,
     Color? inputBgColor,
     Color? secondTextColor,
+    Color? listTileColor,
     TextStyle? semiBold22,
     TextStyle? semiBold16,
     TextStyle? meduim16,
@@ -52,6 +54,7 @@ mixin _$AppThemeTailorMixin on ThemeExtension<AppTheme> {
       mainTextColor: mainTextColor ?? this.mainTextColor,
       inputBgColor: inputBgColor ?? this.inputBgColor,
       secondTextColor: secondTextColor ?? this.secondTextColor,
+      listTileColor: listTileColor ?? this.listTileColor,
       semiBold22: semiBold22 ?? this.semiBold22,
       semiBold16: semiBold16 ?? this.semiBold16,
       meduim16: meduim16 ?? this.meduim16,
@@ -76,6 +79,7 @@ mixin _$AppThemeTailorMixin on ThemeExtension<AppTheme> {
       mainTextColor: Color.lerp(mainTextColor, other.mainTextColor, t)!,
       inputBgColor: Color.lerp(inputBgColor, other.inputBgColor, t)!,
       secondTextColor: Color.lerp(secondTextColor, other.secondTextColor, t)!,
+      listTileColor: Color.lerp(listTileColor, other.listTileColor, t)!,
       semiBold22: TextStyle.lerp(semiBold22, other.semiBold22, t)!,
       semiBold16: TextStyle.lerp(semiBold16, other.semiBold16, t)!,
       meduim16: TextStyle.lerp(meduim16, other.meduim16, t)!,
@@ -106,6 +110,8 @@ mixin _$AppThemeTailorMixin on ThemeExtension<AppTheme> {
             const DeepCollectionEquality()
                 .equals(secondTextColor, other.secondTextColor) &&
             const DeepCollectionEquality()
+                .equals(listTileColor, other.listTileColor) &&
+            const DeepCollectionEquality()
                 .equals(semiBold22, other.semiBold22) &&
             const DeepCollectionEquality()
                 .equals(semiBold16, other.semiBold16) &&
@@ -128,6 +134,7 @@ mixin _$AppThemeTailorMixin on ThemeExtension<AppTheme> {
       const DeepCollectionEquality().hash(mainTextColor),
       const DeepCollectionEquality().hash(inputBgColor),
       const DeepCollectionEquality().hash(secondTextColor),
+      const DeepCollectionEquality().hash(listTileColor),
       const DeepCollectionEquality().hash(semiBold22),
       const DeepCollectionEquality().hash(semiBold16),
       const DeepCollectionEquality().hash(meduim16),
@@ -149,6 +156,7 @@ extension AppThemeBuildContextProps on BuildContext {
   Color get mainTextColor => appTheme.mainTextColor;
   Color get inputBgColor => appTheme.inputBgColor;
   Color get secondTextColor => appTheme.secondTextColor;
+  Color get listTileColor => appTheme.listTileColor;
   TextStyle get semiBold22 => appTheme.semiBold22;
   TextStyle get semiBold16 => appTheme.semiBold16;
   TextStyle get meduim16 => appTheme.meduim16;
