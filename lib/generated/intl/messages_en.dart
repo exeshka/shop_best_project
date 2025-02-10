@@ -32,6 +32,7 @@ class MessageLookup extends MessageLookupByLibrary {
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "accent_color": MessageLookupByLibrary.simpleMessage("Цветовой акцент"),
         "add_account": MessageLookupByLibrary.simpleMessage("Добавить аккаунт"),
+        "app_theme": MessageLookupByLibrary.simpleMessage("Тема приложения"),
         "authorization_error": m0,
         "authorization_required":
             MessageLookupByLibrary.simpleMessage("Требуется авторизация"),

@@ -22,6 +22,8 @@ class AppTheme extends ThemeExtension<AppTheme> with _$AppThemeTailorMixin {
       required this.meduim14,
       required this.regular16,
       required this.regular12,
+      required this.appbarColor,
+      required this.appBarOpenedTextColor,
       required this.regular10,
       required this.listTileColor});
 
@@ -46,9 +48,15 @@ class AppTheme extends ThemeExtension<AppTheme> with _$AppThemeTailorMixin {
   final TextStyle regular12;
   final TextStyle regular10;
 
+  final Color appbarColor;
+
+  final Color appBarOpenedTextColor;
+
   //dark theme
   factory AppTheme.darkTheme({Color? primaryColor}) {
     return AppTheme(
+      appBarOpenedTextColor: Colors.white,
+      appbarColor: DarkColorConstants.appBarColor,
       listTileColor: DarkColorConstants.listTileColor,
       inActiveIconsColor: DarkColorConstants.inActiveIconsColor,
       bgColor: DarkColorConstants.bgColor,
@@ -77,6 +85,8 @@ class AppTheme extends ThemeExtension<AppTheme> with _$AppThemeTailorMixin {
 
   // light theme
   static AppTheme get lightTheme => AppTheme(
+        appBarOpenedTextColor: Colors.white,
+        appbarColor: LightColorConstants.appBarColor,
         listTileColor: LightColorConstants.listTileColor,
         inActiveIconsColor: LightColorConstants.inActiveIconsColor,
         bgColor: LightColorConstants.bgColor,

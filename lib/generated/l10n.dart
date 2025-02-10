@@ -360,6 +360,16 @@ class S {
       args: [time],
     );
   }
+
+  /// `Тема приложения`
+  String get app_theme {
+    return Intl.message(
+      'Тема приложения',
+      name: 'app_theme',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

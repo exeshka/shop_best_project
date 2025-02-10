@@ -31,7 +31,7 @@ class SettingsScreen extends StatelessWidget {
                   return Material(
                     color: Colors.transparent,
                     child: Container(
-                      color: context.onBgColor,
+                      // color: context.appbarColor,
                       child: Stack(
                         fit: StackFit.expand,
                         children: [
@@ -72,10 +72,30 @@ class SettingsScreen extends StatelessWidget {
               )),
           SliverList(
               delegate: SliverChildListDelegate(
-                  [Text(context.s.system_theme), ThemeModeWidget()]))
+            [
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(context.s.app_theme),
+              ),
+              ThemeModeWidget(),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(context.s.language),
+              ),
+            ],
+          ))
         ],
       ),
     );
+  }
+}
+
+class LanguageWidget extends StatelessWidget {
+  const LanguageWidget({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const Placeholder();
   }
 }
 

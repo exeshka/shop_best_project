@@ -62,7 +62,7 @@ class ProductAppBarWidget extends StatelessWidget {
                   child: Builder(
                     builder: (context) {
                       if (userState is UserStateSuccess) {
-                        return ButtonsWidget(
+                        return ButtonsWidget.scale(
                           onTap: () {
                             GoRouter.of(context).pushNamed(UserScreen.name);
                           },
@@ -126,9 +126,9 @@ class ProductAppBarWidget extends StatelessWidget {
               // Profile icon with dynamic position.
               AnimatedPositioned(
                 duration: duration,
-                left: shrinkOffset > positionThreshold ? 16 : -30,
+                left: shrinkOffset > positionThreshold ? 11 : -30,
                 bottom: shrinkOffset > positionThreshold
-                    ? (minExtent / 2) - kToolbarHeight + 10
+                    ? (minExtent / 2) - kToolbarHeight + 13
                     : 16,
                 child: ButtonsWidget.iconScale(
                   onTap: () {

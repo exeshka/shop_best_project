@@ -2,23 +2,45 @@ import 'package:flutter/material.dart';
 
 class ButtonsWidget extends StatelessWidget {
   final Widget child;
-  final Function() onTap;
 
-  const ButtonsWidget({super.key, required this.child, required this.onTap});
+  const ButtonsWidget({
+    super.key,
+    required this.child,
+  });
 
   factory ButtonsWidget.iconScale({
     required Function() onTap,
     required Widget child,
   }) {
     return ButtonsWidget(
-      onTap: onTap,
-      child: Container(
-        decoration: BoxDecoration(
-            color: Colors.transparent, borderRadius: BorderRadius.circular(12)),
-        height: 40,
-        width: 40,
-        child: Padding(
-          padding: const EdgeInsets.all(6),
+      child: ScaleButton(
+        onTap: () => onTap(),
+        child: Container(
+          decoration: BoxDecoration(
+              color: Colors.transparent,
+              borderRadius: BorderRadius.circular(12)),
+          // height: 40,
+          // width: 40,
+          child: Padding(
+            padding: const EdgeInsets.all(6),
+            child: child,
+          ),
+        ),
+      ),
+    );
+  }
+
+  factory ButtonsWidget.scale({
+    required Function() onTap,
+    required Widget child,
+  }) {
+    return ButtonsWidget(
+      child: ScaleButton(
+        onTap: () => onTap(),
+        child: Container(
+          decoration: BoxDecoration(
+              color: Colors.transparent,
+              borderRadius: BorderRadius.circular(12)),
           child: child,
         ),
       ),
@@ -27,10 +49,7 @@ class ButtonsWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ScaleButton(
-      onTap: onTap,
-      child: child,
-    );
+    return child;
   }
 }
 

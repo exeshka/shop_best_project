@@ -25,6 +25,8 @@ mixin _$AppThemeTailorMixin on ThemeExtension<AppTheme> {
   TextStyle get regular16;
   TextStyle get regular12;
   TextStyle get regular10;
+  Color get appbarColor;
+  Color get appBarOpenedTextColor;
 
   @override
   AppTheme copyWith({
@@ -44,6 +46,8 @@ mixin _$AppThemeTailorMixin on ThemeExtension<AppTheme> {
     TextStyle? regular16,
     TextStyle? regular12,
     TextStyle? regular10,
+    Color? appbarColor,
+    Color? appBarOpenedTextColor,
   }) {
     return AppTheme(
       bgColor: bgColor ?? this.bgColor,
@@ -62,6 +66,9 @@ mixin _$AppThemeTailorMixin on ThemeExtension<AppTheme> {
       regular16: regular16 ?? this.regular16,
       regular12: regular12 ?? this.regular12,
       regular10: regular10 ?? this.regular10,
+      appbarColor: appbarColor ?? this.appbarColor,
+      appBarOpenedTextColor:
+          appBarOpenedTextColor ?? this.appBarOpenedTextColor,
     );
   }
 
@@ -87,6 +94,9 @@ mixin _$AppThemeTailorMixin on ThemeExtension<AppTheme> {
       regular16: TextStyle.lerp(regular16, other.regular16, t)!,
       regular12: TextStyle.lerp(regular12, other.regular12, t)!,
       regular10: TextStyle.lerp(regular10, other.regular10, t)!,
+      appbarColor: Color.lerp(appbarColor, other.appbarColor, t)!,
+      appBarOpenedTextColor:
+          Color.lerp(appBarOpenedTextColor, other.appBarOpenedTextColor, t)!,
     );
   }
 
@@ -119,7 +129,11 @@ mixin _$AppThemeTailorMixin on ThemeExtension<AppTheme> {
             const DeepCollectionEquality().equals(meduim14, other.meduim14) &&
             const DeepCollectionEquality().equals(regular16, other.regular16) &&
             const DeepCollectionEquality().equals(regular12, other.regular12) &&
-            const DeepCollectionEquality().equals(regular10, other.regular10));
+            const DeepCollectionEquality().equals(regular10, other.regular10) &&
+            const DeepCollectionEquality()
+                .equals(appbarColor, other.appbarColor) &&
+            const DeepCollectionEquality()
+                .equals(appBarOpenedTextColor, other.appBarOpenedTextColor));
   }
 
   @override
@@ -142,6 +156,8 @@ mixin _$AppThemeTailorMixin on ThemeExtension<AppTheme> {
       const DeepCollectionEquality().hash(regular16),
       const DeepCollectionEquality().hash(regular12),
       const DeepCollectionEquality().hash(regular10),
+      const DeepCollectionEquality().hash(appbarColor),
+      const DeepCollectionEquality().hash(appBarOpenedTextColor),
     );
   }
 }
@@ -164,4 +180,6 @@ extension AppThemeBuildContextProps on BuildContext {
   TextStyle get regular16 => appTheme.regular16;
   TextStyle get regular12 => appTheme.regular12;
   TextStyle get regular10 => appTheme.regular10;
+  Color get appbarColor => appTheme.appbarColor;
+  Color get appBarOpenedTextColor => appTheme.appBarOpenedTextColor;
 }

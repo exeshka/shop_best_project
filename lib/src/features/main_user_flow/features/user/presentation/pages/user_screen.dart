@@ -7,7 +7,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
+import 'package:shop_best_project/gen/assets.gen.dart';
 import 'package:shop_best_project/src/core/bloc/user/user_bloc.dart';
 import 'package:shop_best_project/src/core/extension/extension.dart';
 import 'package:shop_best_project/src/core/theme/other_constants.dart';
@@ -117,6 +119,7 @@ class _UserScreenState extends State<UserScreen>
   Widget build(BuildContext context) {
     return Scaffold(
       body: CustomScrollView(
+        physics: AlwaysScrollableScrollPhysics(parent: BouncingScrollPhysics()),
         controller: _scrollController,
         slivers: [
           AnimatedBuilder(
@@ -261,7 +264,7 @@ class _UserScreenState extends State<UserScreen>
                                         duration: duration,
                                         decoration: BoxDecoration(
                                             shape: BoxShape.circle,
-                                            color: shrinkOffset > 90
+                                            color: !_appBarIsExpanded
                                                 ? Colors.transparent
                                                 : context.onBgColor),
                                         child: Padding(
@@ -309,17 +312,68 @@ class _UserScreenState extends State<UserScreen>
                     onTap: () {
                       GoRouter.of(context).pushNamed(SettingsScreen.name);
                     },
-                    icon: Icon(Icons.settings_accessibility_sharp),
+                    icon: SvgPicture.asset(Assets.svg.ciSettings),
+                    iconColor: Colors.red,
                     title: context.s.settings,
                   ),
                   SettingsTileWidget(
                     onTap: () {},
                     icon: Icon(Icons.settings_accessibility_sharp),
+                    iconColor: Colors.blue,
                     title: context.s.settings,
                   ),
                   SettingsTileWidget(
                     onTap: () {},
                     icon: Icon(Icons.settings_accessibility_sharp),
+                    iconColor: Colors.green,
+                    title: context.s.settings,
+                  ),
+                ],
+              ),
+              SettingsGroupWidget(
+                children: [
+                  SettingsTileWidget(
+                    onTap: () {
+                      GoRouter.of(context).pushNamed(SettingsScreen.name);
+                    },
+                    icon: SvgPicture.asset(Assets.svg.ciSettings),
+                    iconColor: Colors.red,
+                    title: context.s.settings,
+                  ),
+                  SettingsTileWidget(
+                    onTap: () {},
+                    icon: Icon(Icons.settings_accessibility_sharp),
+                    iconColor: Colors.blue,
+                    title: context.s.settings,
+                  ),
+                  SettingsTileWidget(
+                    onTap: () {},
+                    icon: Icon(Icons.settings_accessibility_sharp),
+                    iconColor: Colors.green,
+                    title: context.s.settings,
+                  ),
+                ],
+              ),
+              SettingsGroupWidget(
+                children: [
+                  SettingsTileWidget(
+                    onTap: () {
+                      GoRouter.of(context).pushNamed(SettingsScreen.name);
+                    },
+                    icon: SvgPicture.asset(Assets.svg.ciSettings),
+                    iconColor: Colors.red,
+                    title: context.s.settings,
+                  ),
+                  SettingsTileWidget(
+                    onTap: () {},
+                    icon: Icon(Icons.settings_accessibility_sharp),
+                    iconColor: Colors.blue,
+                    title: context.s.settings,
+                  ),
+                  SettingsTileWidget(
+                    onTap: () {},
+                    icon: Icon(Icons.settings_accessibility_sharp),
+                    iconColor: Colors.green,
                     title: context.s.settings,
                   ),
                 ],
@@ -338,6 +392,7 @@ class SettingsTileWidget extends StatelessWidget {
   final Widget icon;
   final bool? isRadio;
   final bool? isActive;
+  final Color? iconColor;
 
   final void Function() onTap;
 
@@ -347,7 +402,8 @@ class SettingsTileWidget extends StatelessWidget {
       required this.icon,
       required this.onTap,
       this.isRadio = false,
-      this.isActive = false});
+      this.isActive = false,
+      this.iconColor});
 
   @override
   Widget build(BuildContext context) {
@@ -356,46 +412,59 @@ class SettingsTileWidget extends StatelessWidget {
       child: GestureDetector(
         onTap: () => onTap(),
         child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 4),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Row(
-                children: [
-                  SizedBox(
-                    height: 40,
-                    width: 40,
-                    child: icon,
-                  ),
-                  8.widthBox,
-                  Text(
-                    title,
-                    style: context.meduim16,
-                  ),
-                ],
-              ),
-              isRadio!
-                  ? Padding(
-                      padding: const EdgeInsets.only(right: 8),
-                      child: Container(
-                        width: 40,
-                        height: 40,
-                        clipBehavior: Clip.hardEdge,
-                        decoration: BoxDecoration(
-                            color: context.onBgColor, shape: BoxShape.circle),
-                        padding: EdgeInsets.all(11),
-                        child: Container(
-                          clipBehavior: Clip.hardEdge,
-                          decoration: BoxDecoration(
-                              color: isActive!
-                                  ? context.appTheme.primaryColor
-                                  : context.listTileColor,
-                              shape: BoxShape.circle),
-                        ),
-                      ),
-                    )
-                  : Icon(Icons.chevron_right_rounded)
-            ],
+          padding: const EdgeInsets.symmetric(
+            vertical: 6,
+          ),
+          child: Material(
+            color: Colors.transparent,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Row(
+                  children: [
+                    16.widthBox,
+                    Container(
+                      decoration: BoxDecoration(
+                          color: iconColor,
+                          borderRadius: BorderRadius.circular(12)),
+                      height: 35,
+                      width: 35,
+                      padding: EdgeInsets.all(6),
+                      child: icon,
+                    ),
+                    16.widthBox,
+                    Text(
+                      title,
+                      style: context.semiBold16,
+                    ),
+                  ],
+                ),
+                Row(
+                  children: [
+                    isRadio!
+                        ? Container(
+                            width: 40,
+                            height: 40,
+                            clipBehavior: Clip.hardEdge,
+                            decoration: BoxDecoration(
+                                // color: context.onBgColor,
+                                shape: BoxShape.circle),
+                            padding: EdgeInsets.all(11),
+                            child: Container(
+                              clipBehavior: Clip.hardEdge,
+                              decoration: BoxDecoration(
+                                  color: isActive!
+                                      ? context.appTheme.primaryColor
+                                      : context.onBgColor,
+                                  shape: BoxShape.circle),
+                            ),
+                          )
+                        : Icon(Icons.chevron_right_rounded),
+                    8.widthBox,
+                  ],
+                ),
+              ],
+            ),
           ),
         ),
       ),
@@ -410,10 +479,19 @@ class SettingsGroupWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 8),
+      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
       child: Container(
           clipBehavior: Clip.hardEdge,
-          decoration: BoxDecoration(borderRadius: BorderRadius.circular(16)),
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(16),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black.withValues(
+                    alpha: 0.05,
+                  ),
+                  blurRadius: 10,
+                )
+              ]),
           child: ListView.separated(
               padding: EdgeInsets.symmetric(horizontal: 2),
               shrinkWrap: true,
